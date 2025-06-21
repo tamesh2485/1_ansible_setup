@@ -36,11 +36,17 @@ client2 | CHANGED | rc=0 >>
 ############################################################################
 # ansible-galaxy collection install ansible.posix
 # ansible-doc firewalld ; ansible-doc mount 
+
+
 ############################################################################
 		Check syntax / DRY run
 ############################################################################
 # ansible-playbook playbookname.yaml --syntax-check
 # ansible-playbook playbookname.yaml -C [ DRY RUN]
-############################################################################
+
 
 ############################################################################
+		Sample Playbooks
+############################################################################
+first_playbook.yaml - Playbook to install apache service on centos VM
+
