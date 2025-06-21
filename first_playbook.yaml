@@ -1,0 +1,31 @@
+---
+- name: Playbook to install apache service on centos VM
+  hosts: centos
+  become: true
+  gather_facts: yes
+
+  vars:
+    pkg: httpd
+    svc: httpd
+
+  tasks:
+
+    - name: Ensure to install {{ pkg }} 
+      ansible.builtin.package:
+        name: "{{ pkg }}"
+        state: present
+
+    - name: Ensure to start and enable {{ svc }} service
+      ansible.builtin.service:
+        name: "{{ svc }}"
+        state: started
+        enabled: yes
+
+    - name: Ensure to enable firewalld 
+      ansible.posix.firewalld:
+        service: http
+        state: enabled
+        permanent: true
+        immediate: true
+
+
