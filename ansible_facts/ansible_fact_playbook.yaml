@@ -1,0 +1,20 @@
+---
+- name: Playbook to show ansible_fact Modules 
+  hosts: centos
+  become: true
+  tasks:
+
+    - name: Show required values of {{ inventory_hostname }}
+      debug:
+        msg: |
+          The hostname is {{ inventory_hostname }} ;
+          The IP Address of {{ inventory_hostname }} is : {{ ansible_default_ipv4.address }};
+          The Total memory is {{ ansible_memtotal_mb }};
+          The Group of {{ inventory_hostname }} is : {{ group_names }};
+          The {{ inventory_hostname }} is {{ ansible_distribution }} having major version as {{ ansible_distribution_major_version }}
+      tags: message1
+
+    - name: Show required values of {{ inventory_hostname }}
+      debug:
+        msg: "Hostname is {{ inventory_hostname }} && group is {{ group_names }} && IP Address of {{ inventory_hostname }} is : {{ ansible_default_ipv4.address }}"
+      tags: message2
