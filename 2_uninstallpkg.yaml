@@ -1,0 +1,26 @@
+---
+- name: Playbook to uninstall apache service on centos VM
+  hosts: centos
+  become: true
+  gather_facts: yes
+
+  vars:
+    pkg: httpd
+    svc: httpd
+
+  tasks:
+
+    - name: Ensure to uninstall {{ pkg }} 
+      ansible.builtin.package:
+        name: "{{ pkg }}"
+        state: absent
+
+
+    - name: Ensure to disable firewalld 
+      ansible.posix.firewalld:
+        service: http
+        state: disabled
+        permanent: true
+        immediate: true
+
+
