@@ -14,3 +14,7 @@ Connect to the remote Repo
 origin	https://github.com/tamesh2485/1_ansible_setup.git (fetch)
 origin	https://github.com/tamesh2485/1_ansible_setup.git (push)
 
+# git pull origin master
+# ls 
+README.md
+
