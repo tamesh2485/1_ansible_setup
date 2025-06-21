@@ -49,4 +49,4 @@ client2 | CHANGED | rc=0 >>
 		Sample Playbooks
 ############################################################################
 first_playbook.yaml - Playbook to install apache service on centos VM
-
+2_uninstallpkg.yaml - Playbook to uninstall apache service on centos VM
