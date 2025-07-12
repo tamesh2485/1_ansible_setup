@@ -1,0 +1,32 @@
+############################################
+	loop1_playbook.yaml
+############################################
+> This playbook uses loop for users and groups
+
+> Run the playbook 
+$ ansible-playbook -i /home/tamesh/ANSIBLE/loop/inventory /home/tamesh/ANSIBLE/loop/loop1_playbook.yaml
+
+> Validation 
+[root@centos ~]# tail -n 3 /etc/passwd
+raja:x:1001:1002::/home/raja:/bin/bash
+rani:x:1002:1003::/home/rani:/bin/bash
+rahul:x:1003:1004::/home/rahul:/bin/bash
+[root@centos ~]# grep sports /etc/group
+sports:x:1001:raja,rani,rahul
+
+> Delete the group using env variable
+ansible-playbook -i /home/tamesh/ANSIBLE/loop/inventory /home/tamesh/ANSIBLE/loop/loop1_playbook.yaml -e "group_state=absent"  --tags=grp
+
+> Validation
+[root@centos ~]# grep sports /etc/group
+[root@centos ~]#
+
+> Delete the users
+ansible-playbook -i /home/tamesh/ANSIBLE/loop/inventory /home/tamesh/ANSIBLE/loop/loop1_playbook.yaml -e "user_state=absent"  --tags=usr
+
+> Validation
+[root@centos ~]# id raja ; id rani ; id rahul
+id: ‘raja’: no such user
+id: ‘rani’: no such user
+id: ‘rahul’: no such user
+

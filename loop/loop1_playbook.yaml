@@ -1,0 +1,30 @@
+---
+- name: Playbook to add multiple users in the sports group
+  hosts: centos
+  become: true
+  vars:
+    my_users:
+      - raja
+      - rani
+      - rahul
+    my_group:
+      - sports
+
+  tasks:
+
+    - name: Ensure to Create the group
+      loop: "{{ my_group }}"
+      group:
+        name: "{{ item }}"
+        state: "{{ group_state | default('present') }}"
+      tags: grp
+
+    - name: Ensure to Add the users using loop and add all the users to sports as secondary group
+      loop: "{{ my_users }}"
+      user:
+        name: "{{ item }}"
+        state: "{{ user_state | default('present') }}"
+        password: "{{ my_password | default('redhat') | password_hash('sha512') }}"
+        groups: "{{ my_group }}"
+        update_password: on_create
+      tags: usr
