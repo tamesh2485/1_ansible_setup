@@ -21,7 +21,7 @@ ansible-playbook -i /home/tamesh/ANSIBLE/loop/inventory /home/tamesh/ANSIBLE/loo
 [root@centos ~]# grep sports /etc/group
 [root@centos ~]#
 
-> Delete the users
+> Delete the users 
 ansible-playbook -i /home/tamesh/ANSIBLE/loop/inventory /home/tamesh/ANSIBLE/loop/loop1_playbook.yaml -e "user_state=absent"  --tags=usr
 
 > Validation
@@ -29,4 +29,11 @@ ansible-playbook -i /home/tamesh/ANSIBLE/loop/inventory /home/tamesh/ANSIBLE/loo
 id: ‘raja’: no such user
 id: ‘rani’: no such user
 id: ‘rahul’: no such user
-
+############################################
+        loop2_playbook.yaml
+############################################
+> This playbook uses loop for users and groups using var file
+> Run the playbook
+$ ansible-playbook  -i inventory loop2_playbook.yaml
+> Delete the users & groups
+$ ansible-playbook -i inventory loop2_playbook.yaml  -e "group_state=absent user_state=absent"

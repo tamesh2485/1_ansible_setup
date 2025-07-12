@@ -1,0 +1,24 @@
+---
+- name: Playbook to add multiple users in the secondary group using var file
+  hosts: centos
+  become: true
+  vars_files:
+    - myfile.yaml
+  tasks:
+
+    - name: Ensure to Create the groups
+      loop: "{{ my_groups }}"
+      group:
+        name: "{{ item }}"
+        state: "{{ group_state | default('present') }}"
+      tags: grp
+
+    - name: Ensure to Add the users using loop and add all the users to sports as secondary group
+      loop: "{{ my_users }}"
+      user:
+        name: "{{ item }}"
+        state: "{{ user_state | default('present') }}"
+        password: "{{ pass_key.pswd | password_hash('sha512') }}"
+        groups: "{{ my_groups }}"
+        update_password: on_create
+      tags: usr

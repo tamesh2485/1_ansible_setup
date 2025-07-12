@@ -1,0 +1,11 @@
+my_groups:
+  - developer
+  - qa
+  - sbx
+
+pass_key:
+  pswd: redhat123
+
+my_users:
+  - raja
+  - rani  
