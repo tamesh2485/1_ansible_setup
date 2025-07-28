@@ -37,3 +37,26 @@ id: ‘rahul’: no such user
 $ ansible-playbook  -i inventory loop2_playbook.yaml
 > Delete the users & groups
 $ ansible-playbook -i inventory loop2_playbook.yaml  -e "group_state=absent user_state=absent"
+#############################################
+	Playbook to demo block and when
+#############################################
+>Playbook to demo block and when
+$ ansible-playbook  -i inventory  loop3_block_when.yaml
+#############################################
+Create an ansible playbook to check the OS flavour of the managed node & print the output on the terminal
+#############################################
+> playbook to check the OS flavour of the managed node & print the output on the terminal
+$ ansible-playbook loop4.yaml  -i inventory
+############################################################
+Q. Create an ansible playbook to install ftp package if OS is CentOS & having version 9 [AND option]
+############################################################
+$ ansible-playbook loop5.yaml   -i inventory
+############################################################
+Create an ansible playbook to uninstall ftp package if OS is RedHat OR CentOS
+############################################################
+$ ansible-playbook  loop6.yaml  -i  inventory
+###########################################################
+Create an ansible playbook to install web server on RHEL based machine & 
+having major version 9.1 or CentOS machines having major version 9 
+###########################################################
+$  ansible-playbook  loop7.yaml  -i  inventory

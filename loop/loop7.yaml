@@ -1,0 +1,12 @@
+---
+- name: Playbook to install web server on RHEL based machine & having major version 9.1 or CentOS machines having major version 9
+  hosts: all
+  become: true
+  tasks:
+
+    - name: Task to install web server on RHEL based machine & having major version 9.1 or CentOS machines having major version 9
+      when:
+        - (ansible_distribution == "RedHat" and ansible_distribution_version == "9.1") or (ansible_distribution == "CentOS" and ansible_distribution_version == "9")
+      dnf:
+        name: httpd
+        state: latest

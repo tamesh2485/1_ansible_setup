@@ -1,0 +1,13 @@
+---
+- name: playbook to install ftp package if OS is RedHat OR CentOS
+  hosts: all
+  become: true
+  gather_facts: yes
+
+  tasks:
+
+    - name: install ftp package if OS is RedHat OR CentOS
+      when: ansible_distribution == "CentOS" or ansible_distribution == "RedHat"
+      dnf:
+        name: vsftpd
+        state: present
