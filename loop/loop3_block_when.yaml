@@ -1,0 +1,30 @@
+---
+- name: Playbook to demo block and when
+  gather_facts: yes
+  hosts: all
+  become: true
+
+  tasks:
+
+    - name: Execute this block when it is Centos
+      when: "'CentOS' in ansible_distribution"
+      block:
+
+        - name: Show the distribution
+          debug:
+            msg: "This is CentOS machine and name of the host is {{ inventory_hostname }}"
+
+        - name: Install apache package
+          dnf:
+            name: httpd
+            state: present
+
+    - name: Execute this block when it is RHEL
+      when: ansible_distribution == "RedHat"
+      block:
+
+        - name: Show the distribution
+          debug:
+            msg: "This is RedHat machine and name of the host is {{ inventory_hostname }}"
+
+

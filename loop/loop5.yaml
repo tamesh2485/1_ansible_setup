@@ -1,0 +1,15 @@
+---
+- name: playbook to install ftp package if OS is CentOS & having version 9
+  hosts: all
+  become: true
+
+  tasks:
+
+    - name: install ftp package if OS is CentOS & having version 9
+      when:
+        - ansible_distribution == "CentOS"
+        - ansible_distribution_version == "9"
+      dnf:
+        name:
+          - vsftpd
+        state: present

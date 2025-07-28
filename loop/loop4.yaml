@@ -1,0 +1,18 @@
+---
+- name: playbook to check the OS flavour of the managed node & print the output on the terminal
+  hosts: all
+  become: true
+  gather_facts: yes
+
+  tasks:
+
+    - name: Ensure to run set up module
+      when: ansible_distribution == "RedHat"
+      debug:
+        msg: The OS flavour of {{ inventory_hostname }} is {{ ansible_distribution }} belongs to {{ group_names }}, {{ ansible_distribution_version }} 
+
+    - name: Ensure to run set up module
+      when: ansible_distribution == "CentOS"
+      debug:
+        msg: The OS flavour of {{ inventory_hostname }} is {{ ansible_distribution }} belongs to {{ group_names }}, {{ ansible_distribution_version }}
+
