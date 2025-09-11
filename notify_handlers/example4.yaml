@@ -1,0 +1,30 @@
+---
+- name: Playbook to show sample of notify and handlers with fail modue  using ignore_errors and ansible.builtin.meta
+  hosts: centos
+  become: true
+  tasks:
+
+    - name: Ensure content is present
+      notify:
+        - Reboot the server
+      copy:
+        content: Hello Please Reboot me now for better performance & better life 
+        dest: /var/tmp/reboot
+
+    - name: Ensure  handler is rebooted immediately 
+      ansible.builtin.meta: flush_handlers
+
+    - name: This task ensures that the playbook will fail so that the handler part doesn't get executed 
+      ignore_errors: yes
+      ansible.builtin.fail:
+
+
+    - name: Ensure the VM {{ inventory_hostname }} is connected
+      ansible.builtin.wait_for:
+        port: 22
+        delay: 10
+        timeout: 300
+
+  handlers:
+    - name: Reboot the server
+      ansible.builtin.reboot:
