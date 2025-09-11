@@ -1,0 +1,22 @@
+---
+- name: Playbook to show sample of notify and handlers
+  hosts: centos
+  become: true
+  tasks:
+
+    - name: Ensure content is present
+      notify:
+        - Reboot the server
+      copy:
+        content: Reboot me now
+        dest: /var/tmp/reboot
+
+    - name: Ensure the VM {{ inventory_hostname }} is connected
+      ansible.builtin.wait_for:
+        port: 22
+        delay: 10
+        timeout: 300
+
+  handlers:
+    - name: Reboot the server
+      ansible.builtin.reboot:

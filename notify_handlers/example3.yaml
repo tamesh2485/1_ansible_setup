@@ -1,0 +1,27 @@
+---
+- name: Playbook to show sample of notify and handlers with fail modue  using force_handlers to overcome playbook failure
+  hosts: centos
+  become: true
+  force_handlers: yes
+  tasks:
+
+    - name: Ensure content is present
+      notify:
+        - Reboot the server
+      copy:
+        content: Hello Please Reboot me now for better performance
+        dest: /var/tmp/reboot
+
+    - name: This task ensures that the playbook will fail so that the handler part doesn't get executed 
+      ansible.builtin.fail:
+
+
+    - name: Ensure the VM {{ inventory_hostname }} is connected
+      ansible.builtin.wait_for:
+        port: 22
+        delay: 10
+        timeout: 300
+
+  handlers:
+    - name: Reboot the server
+      ansible.builtin.reboot:
