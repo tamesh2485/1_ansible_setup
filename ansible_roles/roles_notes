@@ -1,3 +1,5 @@
+Ansible role is a directory structure. We can make a playbook small
+
 List  Roles - 
 #  ansible-galaxy role list 
 Create role - 
