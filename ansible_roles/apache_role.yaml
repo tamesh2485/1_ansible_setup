@@ -1,0 +1,7 @@
+---
+- name: Playbook to install apache using role
+  hosts: centos10
+  become: true
+
+  roles:
+    - apache

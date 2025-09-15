@@ -1,0 +1,8 @@
+[redhat]
+centos10
+[fedora]
+centos
+
+[test:children]
+redhat
+fedora
