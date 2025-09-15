@@ -1,0 +1,52 @@
+List  Roles - 
+#  ansible-galaxy role list 
+Create role - 
+# ansible-galaxy role init role_name 
+Delete Role 
+#  ansible-galaxy role remove  role_name 
+
+$$$ Create Role 
+
+
+[tamesh@ansibleserver my_roles]$ pwd
+/home/tamesh/ANSIBLE/ansible_roles/my_roles
+[tamesh@ansibleserver my_roles]$  ansible-galaxy role init apache
+- Role apache was created successfully
+[tamesh@ansibleserver my_roles]$ pwd
+/home/tamesh/ANSIBLE/ansible_roles/my_roles
+[tamesh@ansibleserver my_roles]$ ls
+apache
+[tamesh@ansibleserver my_roles]$ tree -F apache/
+apache/
+├── defaults/
+│   └── main.yml
+├── files/
+├── handlers/
+│   └── main.yml
+├── meta/
+│   └── main.yml
+├── README.md
+├── tasks/
+│   └── main.yml
+├── templates/
+├── tests/
+│   ├── inventory
+│   └── test.yml
+└── vars/
+    └── main.yml
+
+[tamesh@ansibleserver my_roles]$ pwd
+/home/tamesh/ANSIBLE/ansible_roles/my_roles
+[tamesh@ansibleserver my_roles]$  ansible-galaxy role init apache
+- Role apache was created successfully
+
+
+[tamesh@ansibleserver ansible_roles]$ pwd
+/home/tamesh/ANSIBLE/ansible_roles
+[tamesh@ansibleserver ansible_roles]$ ansible-galaxy role remove apache
+- successfully removed apache
+
+################################################
+		apache_role.yaml
+################################################
+playbook to  install apache 

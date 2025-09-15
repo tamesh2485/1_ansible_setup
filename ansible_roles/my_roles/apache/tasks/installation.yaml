@@ -1,0 +1,5 @@
+---
+- name: Playbook to install apache 
+  dnf:
+    name: httpd
+    state: latest

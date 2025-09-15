@@ -1,0 +1,4 @@
+---
+- import_tasks: installation.yaml 
+- import_tasks: copy.yaml
+- import_tasks: service.yaml
